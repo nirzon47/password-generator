@@ -122,6 +122,7 @@ const Inputs = () => {
 					type='text'
 					className='input input-bordered'
 					defaultValue={password}
+					readOnly
 				/>
 				<Button
 					name={'Copy Password'}
