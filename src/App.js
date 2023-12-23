@@ -2,8 +2,10 @@ import Inputs from './Inputs'
 
 const App = () => {
 	return (
-		<div className='min-h-screen flex flex-col items-center p-12'>
-			<h1 className='text-3xl font-bold mb-8'>Password Generator</h1>
+		<div className='flex flex-col items-center min-h-screen p-12'>
+			<h1 className='mb-8 text-3xl font-bold text-center'>
+				Password Generator
+			</h1>
 			<Inputs />
 		</div>
 	)
