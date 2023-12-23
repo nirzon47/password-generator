@@ -27,6 +27,7 @@ const generator = (limit) => {
 
 	if (characters === '') {
 		alert('Please select at least one character type')
+		return
 	}
 
 	let password = []

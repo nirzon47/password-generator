@@ -2,11 +2,11 @@ import { FaMinusCircle } from 'react-icons/fa'
 import { FaPlusCircle } from 'react-icons/fa'
 
 import Button from './Button'
-import Checkbox from './Checkbox'
 
 import generator from './generator'
 
 import { useState } from 'react'
+import Checkboxes from './Checkboxes'
 
 const Inputs = () => {
 	const [password, setPassword] = useState('')
@@ -106,12 +106,7 @@ const Inputs = () => {
 					<FaPlusCircle />
 				</button>
 			</div>
-			<div className='flex flex-row flex-wrap items-center justify-center max-w-lg gap-x-16'>
-				<Checkbox name='Add lowercase letters' id='lowercaseCheck' />
-				<Checkbox name='Add uppercase letters' id='uppercaseCheck' />
-				<Checkbox name='Add numbers' id='numbersCheck' />
-				<Checkbox name='Add symbols' id='symbolsCheck' />
-			</div>
+			<Checkboxes />
 			<Button
 				name='Generate Password'
 				twclass='btn-primary mt-6 mb-4'
@@ -121,7 +116,7 @@ const Inputs = () => {
 				<input
 					type='text'
 					className='input input-bordered'
-					defaultValue={password}
+					value={password}
 					readOnly
 				/>
 				<Button
