@@ -1,4 +1,4 @@
-const Checkbox = ({ name }) => {
+const Checkbox = ({ name, id }) => {
 	return (
 		<div class='form-control w-56'>
 			<label class='cursor-pointer label gap-4 justify-between'>
@@ -7,6 +7,7 @@ const Checkbox = ({ name }) => {
 					type='checkbox'
 					class='checkbox checkbox-success'
 					defaultChecked
+					id={id}
 				/>
 			</label>
 		</div>
