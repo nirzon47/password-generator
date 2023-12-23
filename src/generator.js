@@ -1,3 +1,9 @@
+/**
+ * Generates a random password based on the specified limit and the selected character types.
+ *
+ * @param {number} limit - The length of the password to be generated.
+ * @return {string} The randomly generated password.
+ */
 const generator = (limit) => {
 	const lowercase = 'abcdefghijklmnopqrstuvwxyz'
 	const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

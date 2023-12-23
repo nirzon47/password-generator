@@ -12,6 +12,11 @@ const Inputs = () => {
 	const [password, setPassword] = useState('')
 	const [limit, setLimit] = useState(12)
 
+	/**
+	 * Handles increasing the limit.
+	 *
+	 * @return {undefined} There is no return value.
+	 */
 	const handleIncreaseLimit = () => {
 		if (limit < 128) {
 			setLimit((prev) => Number(prev) + 1)
@@ -21,6 +26,11 @@ const Inputs = () => {
 		}
 	}
 
+	/**
+	 * Decreases the limit value by 1 if it is greater than 1. If the limit value is 1 or less, it displays an alert message and sets the limit value to 1.
+	 *
+	 * @return {undefined} No return value
+	 */
 	const handleDecreaseLimit = () => {
 		if (limit > 1) {
 			setLimit((prev) => Number(prev) - 1)
@@ -30,6 +40,12 @@ const Inputs = () => {
 		}
 	}
 
+	/**
+	 * Handles the change event for the limit input field.
+	 *
+	 * @param {Object} e - The event object.
+	 * @return {void} This function does not return anything.
+	 */
 	const handleOnLimitChange = (e) => {
 		if (Number(e.target.value) > 128) {
 			alert('Password length cannot be greater than 128')
@@ -42,11 +58,23 @@ const Inputs = () => {
 		}
 	}
 
+	/**
+	 * Generates a password.
+	 *
+	 * @param {type} limit - the limit of the generated password
+	 * @return {type} the generated password
+	 */
 	const generatePassword = () => {
 		const generatedPassword = generator(limit)
 		setPassword(generatedPassword)
 	}
 
+	/**
+	 * Copies the password to the clipboard.
+	 *
+	 * @param {type} password - the password to be copied
+	 * @return {type} undefined
+	 */
 	const copyPassword = () => {
 		navigator.clipboard.writeText(password)
 	}
