@@ -4,6 +4,8 @@ import { FaPlusCircle } from 'react-icons/fa'
 import Button from './Button'
 import Checkbox from './Checkbox'
 
+import generator from './generator'
+
 import { useState } from 'react'
 
 const Inputs = () => {
@@ -18,6 +20,7 @@ const Inputs = () => {
 			setLimit(128)
 		}
 	}
+
 	const handleDecreaseLimit = () => {
 		if (limit > 1) {
 			setLimit((prev) => Number(prev) - 1)
@@ -26,14 +29,26 @@ const Inputs = () => {
 			setLimit(1)
 		}
 	}
+
 	const handleOnLimitChange = (e) => {
-		if (Number(e.target.value) >= 128) {
+		if (Number(e.target.value) > 128) {
+			alert('Password length cannot be greater than 128')
 			setLimit(128)
-		} else if (Number(e.target.value) <= 1) {
+		} else if (Number(e.target.value) < 1) {
+			alert('Password length cannot be less than 1')
 			setLimit(1)
 		} else {
 			setLimit(Number(e.target.value))
 		}
+	}
+
+	const generatePassword = () => {
+		const generatedPassword = generator(limit)
+		setPassword(generatedPassword)
+	}
+
+	const copyPassword = () => {
+		navigator.clipboard.writeText(password)
 	}
 
 	return (
@@ -69,14 +84,22 @@ const Inputs = () => {
 				<Checkbox name='Add numbers' id='numbersCheck' />
 				<Checkbox name='Add symbols' id='symbolsCheck' />
 			</div>
-			<Button name='Generate Password' twclass='btn-primary mt-6 mb-4' />
+			<Button
+				name='Generate Password'
+				twclass='btn-primary mt-6 mb-4'
+				onClick={generatePassword}
+			/>
 			<div className='flex flex-wrap items-center justify-center gap-2 mt-8'>
 				<input
 					type='text'
 					className='input input-bordered'
 					defaultValue={password}
 				/>
-				<Button name={'Copy Password'} twclass={'btn-secondary'} />
+				<Button
+					name={'Copy Password'}
+					twclass={'btn-secondary'}
+					onClick={copyPassword}
+				/>
 			</div>
 		</>
 	)
