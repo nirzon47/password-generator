@@ -1,16 +1,19 @@
 import { FaMinusCircle } from 'react-icons/fa'
 import { FaPlusCircle } from 'react-icons/fa'
 
-import Button from './Button'
-
-import generator from './generator'
+import Button from './Components/Button'
 
 import { useState } from 'react'
-import Checkboxes from './Checkboxes'
+import Checkboxes from './Components/Checkboxes'
 
 const Inputs = () => {
 	const [password, setPassword] = useState('')
 	const [limit, setLimit] = useState(12)
+
+	const [uppercaseCheckbox, setUppercaseCheckbox] = useState(true)
+	const [lowercaseCheckbox, setLowercaseCheckbox] = useState(true)
+	const [numbersCheckbox, setNumbersCheckbox] = useState(true)
+	const [symbolsCheckbox, setSymbolsCheckbox] = useState(true)
 
 	/**
 	 * Handles increasing the limit.
@@ -56,6 +59,43 @@ const Inputs = () => {
 		} else {
 			setLimit(Number(e.target.value))
 		}
+	}
+
+	const generator = (limit) => {
+		const lowercase = 'abcdefghijklmnopqrstuvwxyz'
+		const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+		const numbers = '0123456789'
+		const symbols = '!@#$%^&*()_+{}|:<>?'
+
+		let characters = ''
+
+		if (lowercaseCheckbox) {
+			characters += lowercase
+		}
+		if (uppercaseCheckbox) {
+			characters += uppercase
+		}
+		if (numbersCheckbox) {
+			characters += numbers
+		}
+		if (symbolsCheckbox) {
+			characters += symbols
+		}
+
+		if (characters === '') {
+			alert('Please select at least one character type')
+			return
+		}
+
+		let password = []
+
+		for (let i = 0; i < limit; i++) {
+			password.push(
+				characters.charAt(Math.floor(Math.random() * characters.length))
+			)
+		}
+
+		return password.join('')
 	}
 
 	/**
@@ -106,7 +146,16 @@ const Inputs = () => {
 					<FaPlusCircle />
 				</button>
 			</div>
-			<Checkboxes />
+			<Checkboxes
+				uppercaseCheckbox={uppercaseCheckbox}
+				lowercaseCheckbox={lowercaseCheckbox}
+				numbersCheckbox={numbersCheckbox}
+				symbolsCheckbox={symbolsCheckbox}
+				setUppercaseCheckbox={setUppercaseCheckbox}
+				setLowercaseCheckbox={setLowercaseCheckbox}
+				setNumbersCheckbox={setNumbersCheckbox}
+				setSymbolsCheckbox={setSymbolsCheckbox}
+			/>
 			<Button
 				name='Generate Password'
 				twclass='btn-primary mt-6 mb-4'
